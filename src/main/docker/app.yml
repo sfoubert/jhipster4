@@ -1,0 +1,16 @@
+version: '2'
+services:
+    jhipster4-app:
+        image: jhipster4
+        external_links:
+            - jhipster4-postgresql:postgresql
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresql:5432/jhipster4
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+        ports:
+            - 8080:8080
+    jhipster4-postgresql:
+        extends:
+            file: postgresql.yml
+            service: jhipster4-postgresql
